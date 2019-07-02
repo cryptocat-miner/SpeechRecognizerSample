@@ -27,11 +27,12 @@ IDE:Android Studio 3.4.1
 [Android 6.0]  
 設定 -> 言語と入力 -> Google音声入力 -> オフラインの音声認識
 
-![オフライン音声認識設定1](https://github.com/cryptocat-miner/SpeechRecognizerSample/blob/master/images/offline_settings1.png)
+<img src="https://github.com/cryptocat-miner/SpeechRecognizerSample/blob/master/images/offline_settings1.png" width="320px" alt="オフライン音声認識設定1">
+  
 
-![オフライン音声認識設定2](https://github.com/cryptocat-miner/SpeechRecognizerSample/blob/master/images/offline_settings2.png)
-
-![オフライン音声認識設定3](https://github.com/cryptocat-miner/SpeechRecognizerSample/blob/master/images/offline_settings3.png)
+<img src="https://github.com/cryptocat-miner/SpeechRecognizerSample/blob/master/images/offline_settings2.png" width="320px" alt="オフライン音声認識設定2">
+  
+<img src="https://github.com/cryptocat-miner/SpeechRecognizerSample/blob/master/images/offline_settings3.png" width="320px" alt="オフライン音声認識設定3">
 
 [Android 9.0]  
 設定 -> システム ->　言語と入力 -> 仮想キーボード -> Google音声入力 -> オフラインの音声認識
