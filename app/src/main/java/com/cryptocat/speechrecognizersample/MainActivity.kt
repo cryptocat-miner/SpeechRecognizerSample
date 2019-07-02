@@ -1,12 +1,16 @@
 package com.cryptocat.speechrecognizersample
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -14,6 +18,9 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+    private val TAG = "RecognitionListener"
+    private val RECORD_REQUEST_CODE = 101
+
     private var mSpeechRecognizer : SpeechRecognizer? = null
     private var speechRecognizerIntent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
 
@@ -22,7 +29,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
         speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault().getLanguage())
         speechRecognizerIntent.putExtra(
@@ -36,23 +42,23 @@ class MainActivity : AppCompatActivity() {
         mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(applicationContext)
         mSpeechRecognizer?.setRecognitionListener(object : RecognitionListener {
             override fun onReadyForSpeech(params: Bundle?) {
-                Log.d("RecognitionListener", "onReadyForSpeech")
+                Log.d(TAG, "onReadyForSpeech")
             }
 
             override fun onRmsChanged(rmsdB: Float) {
-                Log.d("RecognitionListener", "onRmsChanged")
+                Log.d(TAG, "onRmsChanged")
             }
 
             override fun onBufferReceived(buffer: ByteArray?) {
-                Log.d("RecognitionListener", "onBufferReceived")
+                Log.d(TAG, "onBufferReceived")
             }
 
             override fun onBeginningOfSpeech() {
-                Log.d("RecognitionListener", "onBeginningOfSpeech")
+                Log.d(TAG, "onBeginningOfSpeech")
             }
 
             override fun onEndOfSpeech() {
-                Log.d("RecognitionListener", "onEndOfSpeech")
+                Log.d(TAG, "onEndOfSpeech")
             }
 
             override fun onError(error: Int) {
@@ -85,21 +91,21 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onEvent(eventType: Int, params: Bundle?) {
-                Log.d("RecognitionListener", "onEvent")
+                Log.d(TAG, "onEvent")
             }
 
             override fun onPartialResults(partialResults: Bundle) {
-                Log.d("RecognitionListener", "onPartialResults")
+                Log.d(TAG, "onPartialResults")
                 val result = partialResults.getStringArrayList(android.speech.SpeechRecognizer.RESULTS_RECOGNITION)
-                Log.i("RecognitionListener", "onPartialResults" + result.toString())
+                Log.i(TAG, "onPartialResults" + result.toString())
             }
 
             override fun onResults(results: Bundle) {
-                Log.d("RecognitionListener", "onResults")
+                Log.d(TAG, "onResults")
 
                 val result = results.getStringArrayList(android.speech.SpeechRecognizer.RESULTS_RECOGNITION)
 
-                Log.i("RecognitionListener", "onResults" + result.toString())
+                Log.i(TAG, "onResults" + result.toString())
                 listItems.add(result.toString())
                 if (listItems.count() >= 10){
                     listItems.removeAt(0)
@@ -123,6 +129,27 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        mSpeechRecognizer?.startListening(speechRecognizerIntent)
+        val permission = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.RECORD_AUDIO), RECORD_REQUEST_CODE)
+        }
+        else {
+            Log.i(TAG, "Permission is granted")
+            mSpeechRecognizer?.startListening(speechRecognizerIntent)
+            Log.i(TAG, "Start listening")
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        if (requestCode == RECORD_REQUEST_CODE) {
+            if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED){
+                Log.i(TAG, "Permission has been denied by user")
+            }
+            else{
+                Log.i(TAG, "Permission has been granted by user")
+                mSpeechRecognizer?.startListening(speechRecognizerIntent)
+                Log.i(TAG, "Start listening")
+            }
+        }
     }
 }
