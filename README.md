@@ -39,5 +39,6 @@ IDE:Android Studio 3.4.1
 Androidのライフサイクルでの処理は無視しています。  
 音声認識の結果を出力する毎にピロン、と効果音が鳴るのでうるさかったら音を小さくしてください。
 
-
+## ライセンス
+[Unlicense](https://github.com/cryptocat-miner/SpeechRecognizerSample/blob/master/LICENSE)
 
