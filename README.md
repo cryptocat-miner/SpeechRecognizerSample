@@ -51,8 +51,12 @@ IDE:Android Studio 3.4.1
 
 ## 説明
 最初にマイクのパーミッションリクエストで許可された後、継続的に音声認識を行いテキストを表示します。  
+(デフォルトでは10単語まで)
 Androidのライフサイクルでの処理は無視しています。  
 音声認識の結果を出力する毎にピロン、と効果音が鳴るのでうるさかったら音を小さくしてください。
+
+<img src="https://github.com/cryptocat-miner/SpeechRecognizerSample/blob/master/images/音声認識結果.png" width="320px" alt="音声認識結果">  
+
 
 ## ライセンス
 [Unlicense](https://github.com/cryptocat-miner/SpeechRecognizerSample/blob/master/LICENSE)
