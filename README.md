@@ -37,7 +37,15 @@ IDE:Android Studio 3.4.1
 [Android 9.0]  
 設定 -> システム ->　言語と入力 -> 仮想キーボード -> Google音声入力 -> オフラインの音声認識
 
+<img src="https://github.com/cryptocat-miner/SpeechRecognizerSample/blob/master/images/offline_settings_android9.0_1.png" width="320px" alt="オフライン音声認識(Android9.0 1)">
 
+<img src="https://github.com/cryptocat-miner/SpeechRecognizerSample/blob/master/images/offline_settings_android9.0_2.png" width="320px" alt="オフライン音声認識(Android9.0 2)">
+
+<img src="https://github.com/cryptocat-miner/SpeechRecognizerSample/blob/master/images/offline_settings_android9.0_3.png" width="320px" alt="オフライン音声認識(Android9.0 3)">
+
+<img src="https://github.com/cryptocat-miner/SpeechRecognizerSample/blob/master/images/offline_settings_android9.0_4.png" width="320px" alt="オフライン音声認識(Android9.0 4)">
+
+<img src="https://github.com/cryptocat-miner/SpeechRecognizerSample/blob/master/images/offline_settings_android9.0_5.png" width="320px" alt="オフライン音声認識(Android9.0 5)">
 
 
 
