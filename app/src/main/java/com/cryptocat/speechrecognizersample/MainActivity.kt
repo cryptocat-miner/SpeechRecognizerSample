@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        listItems.removeAt(0)
+
         speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault().getLanguage())
         speechRecognizerIntent.putExtra(
             RecognizerIntent.EXTRA_LANGUAGE_MODEL,
@@ -107,7 +109,7 @@ class MainActivity : AppCompatActivity() {
 
                 Log.i(TAG, "onResults" + result.toString())
                 listItems.add(result.toString())
-                if (listItems.count() >= 10){
+                if (listItems.count() > 10){
                     listItems.removeAt(0)
                 }
                 var text = ""
